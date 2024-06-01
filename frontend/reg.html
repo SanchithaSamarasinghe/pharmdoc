@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.registration</title>
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        body {
+            background-color: #1cc5f4d2;
+        }
+        
+        header {
+          background-image: url("img/11.1.png");
+          background-size: 100% 100%;
+          padding: 60px;
+          
+        }
+
+        footer {
+          background-image: url("img/11.2.png");
+          padding: 60px;
+          background-size: 100% 100%;
+          
+        }
+        input, select {
+            
+          width: 50%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+
+        input[type=submit] {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+
+        div {
+          border-radius: 5px;
+          background-color: #32c5edd2;
+          padding: 20px;
+        }
+
+        label {
+          color: rgb(248, 250, 251);
+        }
+
+        .container {
+          border-radius: 5px;
+          background-color: #71bdd0;
+          padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+
+     </header>
+        
+    <div class = "container">
+      <form id="registrationForm">
+          <label for="uname"><b>FULL NAME</b></label>
+         <center><input type="text" id="uname" name="uname" placeholder="full name..."></center>
+          <br>
+          <label for="uid"><b>SLMC REG NUMBER</b></label>
+         <center><input type="text" id="regno" name="regno" placeholder="SLMC number..."></center>
+          <br>
+          <label for="uemail"><b>E-MAIL</b></label>
+         <center><input type="text" id="email" name="email" placeholder="E-MAIL..."></center>
+          <br>
+          <label for="password"><b>PASSWORD</b></label>
+          <center><input type="password" id="password" name="password" placeholder="Your password.."></center>
+          <br>
+         
+          <input type="submit" value="SUBMIT">
+        </form>
+       
+    </div>
+
+    <footer>
+        
+    </footer>   
+    <script>
+      document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const fullname = document.getElementById('uname').value;
+          const slmcregno = document.getElementById('regno').value;
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          
+
+          const response = await fetch('http://localhost:3005/regdoc/newdoc', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ fullname,slmcregno,email, password })
+          });
+
+          if (response.ok) {
+              alert('Registration successful');
+          } else {
+              alert('Registration failed');
+          }
+      });
+  </script> 
+      
+</body>
+</html>
